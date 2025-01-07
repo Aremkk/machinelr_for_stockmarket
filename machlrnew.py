@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
 
-# Запрос тикера у пользователя
+
 ticker = input("Введите тикер компании (например, AAPL, MSFT, GOOG): ")
 
 # Загрузка данных
@@ -61,12 +61,12 @@ rmse_values = []
 mape_values = []
 
 for day in range(forecast_days):
-    y_true = data['Close'].values[-(len(predictions) * forecast_days):]  # Get values for whole predicted interval
+    y_true = data['Close'].values[-(len(predictions) * forecast_days):] 
     y_pred = predictions[:, day]
 
-    # Slice y_true for the current day of the forecast
+   
     y_true_day = y_true[day::forecast_days]
-    # Limit the true values to the length of the predictions
+   
     y_true_day = y_true_day[:len(y_pred)]
 
     rmse = np.sqrt(mean_squared_error(y_true_day, y_pred))
